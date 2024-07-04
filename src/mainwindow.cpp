@@ -598,14 +598,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             if (mouseEvent->button() == Qt::RightButton)
             {
                 m_live_scene->exec(dgelom::Graphics::add_point);
-                qDebug() << "Right button clicked :" << m_live_scene->points()[m_live_scene->points().size()-1];
+                
                 /* QPointF clickPoint = ui->graphicsView->mapToScene(mouseEvent->pos()); // 获取点击点的坐标
                 qDebug() << "Clicked at:" << clickPoint;
                 m_live_scene->clear_temp_items();
                 m_live_scene->add_temp_point(clickPoint);
 
                 ui->tbX->setText(QString::number((int)clickPoint.x()));
-                ui->tbY->setText(QString::number((int)clickPoint.y()));    */             
+                ui->tbY->setText(QString::number((int)clickPoint.y()));    */
             }
         }
     }

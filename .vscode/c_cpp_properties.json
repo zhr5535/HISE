@@ -4,15 +4,15 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:\\tools\\QT\\5.15.2\\mingw81_64\\include\\**",
-                "D:\\opencv\\build\\include"
+                "D:\\software\\Qt\\5.15.2\\mingw81_64\\include\\**",
+                "D:\\software\\opencv-4.6.0\\install\\include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "D:\\tools\\QT\\Tools\\mingw810_64\\bin\\g++.exe",
+            "compilerPath": "D:\\software\\mingw64\\bin\\g++.exe",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"
