@@ -59,6 +59,10 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "qsettings": "cpp",
-        "qwheelevent": "cpp"
+        "qwheelevent": "cpp",
+        "set": "cpp",
+        "iomanip": "cpp",
+        "qcoreapplication": "cpp",
+        "qtwidgets": "cpp"
     }
 }

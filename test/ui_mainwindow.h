@@ -10,13 +10,11 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPushButton>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "scalview2d.h"
 
@@ -25,167 +23,86 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionEnum;
+    QAction *actionOpenClose;
+    QAction *actionStartStop;
+    QAction *actionStartStopTracking;
+    QAction *actionCameraParam;
+    QAction *actionPauseResumeTracking;
+    QAction *actionForwardTracking;
     QWidget *centralwidget;
-    QFrame *top_frame;
-    QComboBox *ComboDevices;
-    QPushButton *bnEnum;
-    QPushButton *bnOpenClose;
-    QPushButton *bnStartStop;
-    QPushButton *bnStartStopTracking;
-    QPushButton *bnForwardTracking;
-    QPushButton *bnPauseResumeTracking;
-    QLineEdit *tbExposure;
-    QLabel *lExposure;
-    QLabel *lGain;
-    QLineEdit *tbGain;
-    QLabel *lFrameRate;
-    QLineEdit *tbFrameRate;
+    QVBoxLayout *verticalLayout;
     ScalableGraphicsView *graphicsView;
-    QFrame *bottom_frame;
-    QLabel *lXCoord;
-    QLabel *lX;
-    QLabel *lYCoord;
-    QLabel *lY;
-    QLineEdit *tbX;
-    QLabel *lTrackPoint;
-    QLineEdit *tbY;
-    QPushButton *bnSetParam;
-    QPushButton *bnGetParam;
-    QPushButton *bnZoomIn;
-    QPushButton *bnZoomOut;
+    QToolBar *tbEnum;
+    QToolBar *tbControl;
+    QToolBar *tbTracking;
+    QToolBar *tbCamParam;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(700, 600);
+        MainWindow->resize(800, 600);
+        actionEnum = new QAction(MainWindow);
+        actionEnum->setObjectName(QString::fromUtf8("actionEnum"));
+        actionOpenClose = new QAction(MainWindow);
+        actionOpenClose->setObjectName(QString::fromUtf8("actionOpenClose"));
+        actionStartStop = new QAction(MainWindow);
+        actionStartStop->setObjectName(QString::fromUtf8("actionStartStop"));
+        actionStartStopTracking = new QAction(MainWindow);
+        actionStartStopTracking->setObjectName(QString::fromUtf8("actionStartStopTracking"));
+        actionCameraParam = new QAction(MainWindow);
+        actionCameraParam->setObjectName(QString::fromUtf8("actionCameraParam"));
+        actionPauseResumeTracking = new QAction(MainWindow);
+        actionPauseResumeTracking->setObjectName(QString::fromUtf8("actionPauseResumeTracking"));
+        actionForwardTracking = new QAction(MainWindow);
+        actionForwardTracking->setObjectName(QString::fromUtf8("actionForwardTracking"));
+        centralwidget = new QWidget(MainWindow);
+        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        verticalLayout = new QVBoxLayout(centralwidget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        graphicsView = new ScalableGraphicsView(centralwidget);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
-        MainWindow->setSizePolicy(sizePolicy);
-        MainWindow->setTabShape(QTabWidget::Rounded);
-        centralwidget = new QWidget(MainWindow);
-        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        top_frame = new QFrame(centralwidget);
-        top_frame->setObjectName(QString::fromUtf8("top_frame"));
-        top_frame->setGeometry(QRect(-2, 0, 704, 40));
-        sizePolicy.setHeightForWidth(top_frame->sizePolicy().hasHeightForWidth());
-        top_frame->setSizePolicy(sizePolicy);
-        top_frame->setStyleSheet(QString::fromUtf8("QFrame {  \n"
-"    border: 2px solid gray; /* \350\256\276\347\275\256\350\276\271\346\241\206\345\216\232\345\272\246\344\270\2722\345\203\217\347\264\240\357\274\214\351\242\234\350\211\262\344\270\272\351\273\221\350\211\262 */  \n"
-"    background-color: rgb(190,190,190); /* \350\256\276\347\275\256\350\203\214\346\231\257\351\242\234\350\211\262\344\270\272\347\201\260\350\211\262 */  \n"
-"}"));
-        top_frame->setFrameShape(QFrame::StyledPanel);
-        top_frame->setFrameShadow(QFrame::Raised);
-        ComboDevices = new QComboBox(top_frame);
-        ComboDevices->setObjectName(QString::fromUtf8("ComboDevices"));
-        ComboDevices->setGeometry(QRect(40, 7, 450, 25));
-        bnEnum = new QPushButton(top_frame);
-        bnEnum->setObjectName(QString::fromUtf8("bnEnum"));
-        bnEnum->setGeometry(QRect(510, 10, 60, 20));
-        bnEnum->setCheckable(false);
-        bnEnum->setChecked(false);
-        bnOpenClose = new QPushButton(top_frame);
-        bnOpenClose->setObjectName(QString::fromUtf8("bnOpenClose"));
-        bnOpenClose->setGeometry(QRect(630, 5, 60, 30));
-        bnStartStop = new QPushButton(top_frame);
-        bnStartStop->setObjectName(QString::fromUtf8("bnStartStop"));
-        bnStartStop->setEnabled(true);
-        bnStartStop->setGeometry(QRect(40, 7, 60, 25));
-        bnStartStopTracking = new QPushButton(top_frame);
-        bnStartStopTracking->setObjectName(QString::fromUtf8("bnStartStopTracking"));
-        bnStartStopTracking->setEnabled(false);
-        bnStartStopTracking->setGeometry(QRect(120, 7, 60, 25));
-        bnForwardTracking = new QPushButton(top_frame);
-        bnForwardTracking->setObjectName(QString::fromUtf8("bnForwardTracking"));
-        bnForwardTracking->setEnabled(false);
-        bnForwardTracking->setGeometry(QRect(250, 10, 60, 20));
-        bnPauseResumeTracking = new QPushButton(top_frame);
-        bnPauseResumeTracking->setObjectName(QString::fromUtf8("bnPauseResumeTracking"));
-        bnPauseResumeTracking->setEnabled(false);
-        bnPauseResumeTracking->setGeometry(QRect(190, 10, 60, 20));
-        tbExposure = new QLineEdit(top_frame);
-        tbExposure->setObjectName(QString::fromUtf8("tbExposure"));
-        tbExposure->setEnabled(false);
-        tbExposure->setGeometry(QRect(360, 10, 60, 20));
-        lExposure = new QLabel(top_frame);
-        lExposure->setObjectName(QString::fromUtf8("lExposure"));
-        lExposure->setGeometry(QRect(330, 10, 30, 20));
-        lExposure->setAlignment(Qt::AlignCenter);
-        lGain = new QLabel(top_frame);
-        lGain->setObjectName(QString::fromUtf8("lGain"));
-        lGain->setGeometry(QRect(430, 10, 30, 20));
-        lGain->setAlignment(Qt::AlignCenter);
-        tbGain = new QLineEdit(top_frame);
-        tbGain->setObjectName(QString::fromUtf8("tbGain"));
-        tbGain->setEnabled(false);
-        tbGain->setGeometry(QRect(460, 10, 60, 20));
-        lFrameRate = new QLabel(top_frame);
-        lFrameRate->setObjectName(QString::fromUtf8("lFrameRate"));
-        lFrameRate->setGeometry(QRect(530, 10, 30, 20));
-        lFrameRate->setAlignment(Qt::AlignCenter);
-        tbFrameRate = new QLineEdit(top_frame);
-        tbFrameRate->setObjectName(QString::fromUtf8("tbFrameRate"));
-        tbFrameRate->setEnabled(false);
-        tbFrameRate->setGeometry(QRect(560, 10, 60, 20));
-        graphicsView = new ScalableGraphicsView(centralwidget);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(40, 50, 612, 512));
         sizePolicy.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
         graphicsView->setSizePolicy(sizePolicy);
-        bottom_frame = new QFrame(centralwidget);
-        bottom_frame->setObjectName(QString::fromUtf8("bottom_frame"));
-        bottom_frame->setGeometry(QRect(0, 575, 700, 25));
-        bottom_frame->setStyleSheet(QString::fromUtf8("QFrame {   \n"
-"    background-color: white; /* \350\256\276\347\275\256\350\203\214\346\231\257\351\242\234\350\211\262\344\270\272\347\231\275\350\211\262 */  \n"
-"}"));
-        bottom_frame->setFrameShape(QFrame::StyledPanel);
-        bottom_frame->setFrameShadow(QFrame::Raised);
-        lXCoord = new QLabel(bottom_frame);
-        lXCoord->setObjectName(QString::fromUtf8("lXCoord"));
-        lXCoord->setGeometry(QRect(40, 2, 60, 20));
-        lXCoord->setAutoFillBackground(false);
-        lXCoord->setTextFormat(Qt::AutoText);
-        lXCoord->setScaledContents(false);
-        lXCoord->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        lX = new QLabel(bottom_frame);
-        lX->setObjectName(QString::fromUtf8("lX"));
-        lX->setGeometry(QRect(20, 2, 21, 20));
-        lYCoord = new QLabel(bottom_frame);
-        lYCoord->setObjectName(QString::fromUtf8("lYCoord"));
-        lYCoord->setGeometry(QRect(130, 2, 60, 20));
-        lY = new QLabel(bottom_frame);
-        lY->setObjectName(QString::fromUtf8("lY"));
-        lY->setGeometry(QRect(110, 2, 21, 20));
-        tbX = new QLineEdit(bottom_frame);
-        tbX->setObjectName(QString::fromUtf8("tbX"));
-        tbX->setGeometry(QRect(310, 2, 41, 20));
-        lTrackPoint = new QLabel(bottom_frame);
-        lTrackPoint->setObjectName(QString::fromUtf8("lTrackPoint"));
-        lTrackPoint->setGeometry(QRect(250, 2, 54, 21));
-        tbY = new QLineEdit(bottom_frame);
-        tbY->setObjectName(QString::fromUtf8("tbY"));
-        tbY->setGeometry(QRect(370, 2, 41, 20));
-        bnSetParam = new QPushButton(bottom_frame);
-        bnSetParam->setObjectName(QString::fromUtf8("bnSetParam"));
-        bnSetParam->setEnabled(false);
-        bnSetParam->setGeometry(QRect(530, 2, 60, 20));
-        bnGetParam = new QPushButton(bottom_frame);
-        bnGetParam->setObjectName(QString::fromUtf8("bnGetParam"));
-        bnGetParam->setEnabled(false);
-        bnGetParam->setGeometry(QRect(460, 2, 60, 20));
-        bnZoomIn = new QPushButton(centralwidget);
-        bnZoomIn->setObjectName(QString::fromUtf8("bnZoomIn"));
-        bnZoomIn->setGeometry(QRect(617, 492, 35, 35));
-        QFont font;
-        font.setPointSize(18);
-        bnZoomIn->setFont(font);
-        bnZoomOut = new QPushButton(centralwidget);
-        bnZoomOut->setObjectName(QString::fromUtf8("bnZoomOut"));
-        bnZoomOut->setGeometry(QRect(617, 527, 35, 35));
-        bnZoomOut->setFont(font);
+
+        verticalLayout->addWidget(graphicsView);
+
         MainWindow->setCentralWidget(centralwidget);
+        tbEnum = new QToolBar(MainWindow);
+        tbEnum->setObjectName(QString::fromUtf8("tbEnum"));
+        QFont font;
+        font.setPointSize(10);
+        tbEnum->setFont(font);
+        MainWindow->addToolBar(Qt::TopToolBarArea, tbEnum);
+        tbControl = new QToolBar(MainWindow);
+        tbControl->setObjectName(QString::fromUtf8("tbControl"));
+        tbControl->setFont(font);
+        MainWindow->addToolBar(Qt::TopToolBarArea, tbControl);
+        tbTracking = new QToolBar(MainWindow);
+        tbTracking->setObjectName(QString::fromUtf8("tbTracking"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, tbTracking);
+        tbCamParam = new QToolBar(MainWindow);
+        tbCamParam->setObjectName(QString::fromUtf8("tbCamParam"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, tbCamParam);
+
+        tbEnum->addAction(actionEnum);
+        tbEnum->addSeparator();
+        tbControl->addAction(actionOpenClose);
+        tbControl->addSeparator();
+        tbControl->addAction(actionStartStop);
+        tbControl->addSeparator();
+        tbControl->addAction(actionStartStopTracking);
+        tbControl->addSeparator();
+        tbControl->addAction(actionCameraParam);
+        tbControl->addSeparator();
+        tbTracking->addAction(actionPauseResumeTracking);
+        tbTracking->addSeparator();
+        tbTracking->addAction(actionForwardTracking);
+        tbTracking->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -195,26 +112,47 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        bnEnum->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
-        bnOpenClose->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
-        bnStartStop->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
-        bnStartStopTracking->setText(QCoreApplication::translate("MainWindow", "Track", nullptr));
-        bnForwardTracking->setText(QCoreApplication::translate("MainWindow", "Forward", nullptr));
-        bnPauseResumeTracking->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
-        lExposure->setText(QCoreApplication::translate("MainWindow", "Expo", nullptr));
-        lGain->setText(QCoreApplication::translate("MainWindow", "Gain", nullptr));
-        lFrameRate->setText(QCoreApplication::translate("MainWindow", "FPS", nullptr));
-        lXCoord->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lX->setText(QCoreApplication::translate("MainWindow", "x:", nullptr));
-        lYCoord->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        lY->setText(QCoreApplication::translate("MainWindow", "y:", nullptr));
-        tbX->setText(QCoreApplication::translate("MainWindow", "1224", nullptr));
-        lTrackPoint->setText(QCoreApplication::translate("MainWindow", "\350\277\275\350\270\252\347\202\271: ", nullptr));
-        tbY->setText(QCoreApplication::translate("MainWindow", "1024", nullptr));
-        bnSetParam->setText(QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256\345\217\202\346\225\260", nullptr));
-        bnGetParam->setText(QCoreApplication::translate("MainWindow", "\350\216\267\345\217\226\345\217\202\346\225\260", nullptr));
-        bnZoomIn->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
-        bnZoomOut->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        actionEnum->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
+#if QT_CONFIG(tooltip)
+        actionEnum->setToolTip(QCoreApplication::translate("MainWindow", "Search for available devices", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionEnum->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+E", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionOpenClose->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
+#if QT_CONFIG(tooltip)
+        actionOpenClose->setToolTip(QCoreApplication::translate("MainWindow", "Open/Close selected camera", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionOpenClose->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStartStop->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStartStop->setToolTip(QCoreApplication::translate("MainWindow", "Start/Stop acquisition", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStartStop->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+A", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionStartStopTracking->setText(QCoreApplication::translate("MainWindow", "Track", nullptr));
+#if QT_CONFIG(tooltip)
+        actionStartStopTracking->setToolTip(QCoreApplication::translate("MainWindow", "Start/Stop Tracking", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionStartStopTracking->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+T", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionCameraParam->setText(QCoreApplication::translate("MainWindow", "CameraParam", nullptr));
+#if QT_CONFIG(tooltip)
+        actionCameraParam->setToolTip(QCoreApplication::translate("MainWindow", "set camera params", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(shortcut)
+        actionCameraParam->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));
+#endif // QT_CONFIG(shortcut)
+        actionPauseResumeTracking->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+        actionForwardTracking->setText(QCoreApplication::translate("MainWindow", "Forward", nullptr));
+        tbEnum->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+        tbControl->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
+        tbTracking->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
+        tbCamParam->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar_2", nullptr));
     } // retranslateUi
 
 };

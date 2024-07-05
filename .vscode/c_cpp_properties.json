@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
+                "${workspaceFolder}\\include\\**",
+                "${workspaceFolder}\\test",
                 "D:\\software\\Qt\\5.15.2\\mingw81_64\\include\\**",
                 "D:\\software\\opencv-4.6.0\\install\\include"
             ],

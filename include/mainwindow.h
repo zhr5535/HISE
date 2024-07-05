@@ -24,30 +24,32 @@ private:
     void show_error_msg(QString message, unsigned int error_num);
 
 public slots:
-    void on_bnEnum_clicked() { enum_devices(); };
+    void actionEnum_triggered() { enum_devices(); };
 
-    void on_bnOpenClose_clicked();
+    void actionOpenClose_triggered();
 
-    void on_bnStartStop_clicked();
+    void actionStartStop_triggered();
 
-    void on_bnGetParam_clicked() { get_param(); };
+    // void on_bnGetParam_clicked() { get_param(); };
 
-    void on_bnSetParam_clicked() { set_param(); };
+    // void on_bnSetParam_clicked() { set_param(); };
 
-    void on_bnStartStopTracking_clicked();
+    void actionStartStopTracking_triggered();
 
-    void on_bnPauseResumeTracking_clicked();
+    void actionPauseResumeTracking_triggered();
 
-    void on_bnForwardTracking_clicked() { forward_tracking(); };
+    void actionForwardTracking_triggered() { forward_tracking(); };
 
-    void on_bnZoomIn_clicked();
+    void actionCameraParam_triggered();
 
-    void on_bnZoomOut_clicked();
+    // void on_bnZoomIn_clicked();
+
+    // void on_bnZoomOut_clicked();
 
     void update_live_scene(const QImage &image);
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;    
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     void enum_devices();
